@@ -19,6 +19,7 @@ public class CommodityNotificationConsumer {
 
     @KafkaListener(topics = "t-commodity", groupId = "cg-notification")
     public void consume(String message) throws JsonProcessingException {
+        // to convert Json String to Employee class, we will use Object Mapper using readValue method
         var commodity = objectMapper.readValue(message, Commodity.class);
         LOG.info("Notification log for: {}", commodity);
     }

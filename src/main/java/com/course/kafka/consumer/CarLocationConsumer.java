@@ -25,6 +25,7 @@ public class CarLocationConsumer {
 
     @KafkaListener(topics = "t-carLocation", groupId = "cg-far-location", containerFactory = "farLocationContainerFactory")
     public void consumeFar(String message) throws JsonProcessingException {
+        // to convert Json String to Employee class, we will use Object Mapper using readValue method
         var carLocation = objectMapper.readValue(message, CarLocation.class);
        /* Spring already provide cleaner way to do filtering,so when a message doesn't
        match criteria, it will never reach the listener method. We don't need if condition.

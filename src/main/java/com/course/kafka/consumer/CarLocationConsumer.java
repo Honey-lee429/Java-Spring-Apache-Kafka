@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarLocationConsumer {
-    private Logger LOG = LoggerFactory.getLogger(CarLocationConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CarLocationConsumer.class);
 
     @Autowired
     private ObjectMapper objectMapper;
+    // to convert Json String to Employee class, we will use Object Mapper using readValue method
 
     @KafkaListener(topics = "t-carLocation", groupId = "cg-all-location")
     public void consumeAll(String message) throws JsonProcessingException {
@@ -23,6 +24,7 @@ public class CarLocationConsumer {
         LOG.info("listenAll: {} ", carLocation);
     }
 
+    //this method will take string from t-food-order and convert it into java object
     @KafkaListener(topics = "t-carLocation", groupId = "cg-far-location", containerFactory = "farLocationContainerFactory")
     public void consumeFar(String message) throws JsonProcessingException {
         // to convert Json String to Employee class, we will use Object Mapper using readValue method

@@ -32,6 +32,7 @@ public class PaymentRequestConsumer {
 
     @KafkaListener(topics = "t-payment-request", groupId = "")
     public void consumer(String message) throws JsonProcessingException {
+        // to convert Json String to Employee class, we will use Object Mapper using readValue method
         var paymentRequest = objectMapper.readValue(message, PaymentRequest.class);
 
         var cachekey = new PaymentRequestCachKey(paymentRequest.getPaymentNumber(), paymentRequest.getAmount(),

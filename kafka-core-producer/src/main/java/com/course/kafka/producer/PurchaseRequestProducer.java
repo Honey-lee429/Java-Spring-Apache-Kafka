@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PurchaseRequestProducer {
+
+    //we need to Autowired kafka template for sending message, and creat jackson object mapper
+    //for converting CarLocation into json.
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 

@@ -12,7 +12,8 @@ public class EmployeeJsonProducer {
     */
     @Autowired
     private ObjectMapper objectMapper;
-
+    //we need to Autowired kafka template for sending message, and creat jackson object mapper
+    //for converting CarLocation into json.
     @Autowired
     KafkaTemplate<String, String> kafkaTemplate;
 

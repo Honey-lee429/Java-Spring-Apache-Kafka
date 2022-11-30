@@ -8,6 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RebalanceProducer {
 
+    //we need to Autowired kafka template for sending message, and creat jackson object mapper
+    //for converting CarLocation into json.
+
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 

@@ -13,6 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FixedRateProducer {
 
     private static final Logger LOG = LoggerFactory.getLogger(FixedRateProducer.class.getName());
+
+    //we need to Autowired kafka template for sending message, and creat jackson object mapper
+    //for converting CarLocation into json.
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     private final AtomicInteger counter = new AtomicInteger();

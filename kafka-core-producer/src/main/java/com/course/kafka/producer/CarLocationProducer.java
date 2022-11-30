@@ -8,7 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarLocationProducder {
+public class CarLocationProducer {
     //we need to Autowired kafka template for sending message, and creat jackson object mapper
     //for converting CarLocation into json.
     @Autowired

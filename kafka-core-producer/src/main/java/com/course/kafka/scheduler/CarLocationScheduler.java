@@ -1,7 +1,7 @@
 package com.course.kafka.scheduler;
 
 import com.course.kafka.entity.CarLocation;
-import com.course.kafka.producer.CarLocationProducder;
+import com.course.kafka.producer.CarLocationProducer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.java.Log;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class CarLocationScheduler {
     private CarLocation carThree;
 
     @Autowired
-    private CarLocationProducder carLocationProducder;
+    private CarLocationProducer carLocationProducder;
 
     public CarLocationScheduler(){
         var now = System.currentTimeMillis();

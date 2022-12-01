@@ -18,6 +18,12 @@ public class FoodOrderHandler implements ConsumerAwareListenerErrorHandler {
         LOG.warn("Food order error, sending to elasticserch: {}, because: {}", message.getPayload(),
                 exception.getMessage());
 
+        //it's up to you wich exception we will rethrow, in this case we will rethrow all runtime exception
+
+        if (exception.getCause() instanceof RuntimeException){
+            throw exception;
+        }
+
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.course.kafka.config;
 
 import com.course.kafka.entity.CarLocation;
+import com.course.kafka.handler.GlobalErrorHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -30,7 +31,8 @@ public class KafkaConfig {
 
     @Autowired
     private ObjectMapper objectMapper;
-
+// we use this custom container factory bay defining the bean name as "farLocationContainerFactory" and
+    //refer to that name form @KafkaListener annotation
     @Bean(name = "farLocationContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<Object, Object> farLocationContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer) {
@@ -50,5 +52,17 @@ public class KafkaConfig {
             }
         });
         return factory;
+    }
+
+    @Bean(name = "farLocationContainerFactory")
+    public ConcurrentKafkaListenerContainerFactory<Object, Object> kafkaListenerContainerFactory (
+            ConcurrentKafkaListenerContainerFactoryConfigurer configurer){
+        var factory = new ConcurrentKafkaListenerContainerFactory<Object, Object>();
+        configurer.configure(factory, consumerFactory());
+
+        factory.setErrorHandler(new GlobalErrorHandler());
+
+        return factory;
+
     }
 }

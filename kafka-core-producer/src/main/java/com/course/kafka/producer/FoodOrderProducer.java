@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class FoodOrderProducer {
 
     //we need to Autowired kafka template for sending message, and creat jackson object mapper
-    //for converting CarLocation into json.
+    //for converting FoodOrderProducer into json.
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;

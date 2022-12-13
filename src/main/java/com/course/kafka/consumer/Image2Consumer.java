@@ -22,12 +22,12 @@ public class Image2Consumer {
 
 
 
-    //Spring provides annotation @RetryableTopic to configure nnon blocking retry
+    //Spring provides annotation @RetryableTopic to configure non blocking retry
     @RetryableTopic(
             //Spring engine will creates some topic automatically to handle the non blocking mechanism (autoCreateTopics = "true")
             autoCreateTopics = "true", attempts = "4",
             topicSuffixingStrategy = TopicSuffixingStrategy.SUFFIX_WITH_DELAY_VALUE,
-            backoff = @Backoff(delay = 3000, maxDelay = 10_000, multiplier = 1.5, random = true),,
+            backoff = @Backoff(delay = 3000, maxDelay = 10_000, multiplier = 1.5, random = true),
             dltTopicSuffix = "-dead"
     )
     //we use the consumer record to see the partition

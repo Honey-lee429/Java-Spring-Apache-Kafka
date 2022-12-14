@@ -13,15 +13,17 @@ public class GeneralLedgerProducer {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-
-   private AtomicInteger counter = new AtomicInteger();
+    private AtomicInteger counter = new AtomicInteger();
 
     public void send(String message ){
         kafkaTemplate.send("t-general-ledger", message);
     }
+
     @Scheduled(fixedRate = 1000)
     public void schedule(){
         var message = "Ledger " + counter.incrementAndGet();
         send(message);
     }
+
+
 }
